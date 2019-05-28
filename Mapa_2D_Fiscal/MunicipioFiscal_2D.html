@@ -1,0 +1,450 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="css/leaflet-control-geocoder.Geocoder.css">
+        <link rel="stylesheet" href="css/leaflet-measure.css">
+        <style>
+        html, body, #map {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="js/leaflet-control-geocoder.Geocoder.js"></script>
+        <script src="js/leaflet-measure.js"></script>
+        <script src="data/Curvasdenivel_1.js"></script>
+        <script src="data/MuncipiodeFiscal_2.js"></script>
+        <script>
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        })
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="http://leafletjs.com" title="A JS library for interactive maps">Leaflet</a>');
+        var measureControl = new L.Control.Measure({
+            position: 'topleft',
+            primaryLengthUnit: 'meters',
+            secondaryLengthUnit: 'kilometers',
+            primaryAreaUnit: 'sqmeters',
+            secondaryAreaUnit: 'hectares'
+        });
+        measureControl.addTo(map);
+        document.getElementsByClassName('leaflet-control-measure-toggle')[0]
+        .innerHTML = '';
+        document.getElementsByClassName('leaflet-control-measure-toggle')[0]
+        .className += ' fas fa-ruler';
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+            if (bounds_group.getLayers().length) {
+                map.fitBounds(bounds_group.getBounds());
+            }
+        }
+        var img_MDEdelmunicipiodeFiscal_0 = 'data/MDEdelmunicipiodeFiscal_0.png';
+        var img_bounds_MDEdelmunicipiodeFiscal_0 = [[42.39039465698118,-0.20125022539580148],[42.57997323099618,0.05366489965831923]];
+        var layer_MDEdelmunicipiodeFiscal_0 = new L.imageOverlay(img_MDEdelmunicipiodeFiscal_0, img_bounds_MDEdelmunicipiodeFiscal_0);
+        bounds_group.addLayer(layer_MDEdelmunicipiodeFiscal_0);
+        map.addLayer(layer_MDEdelmunicipiodeFiscal_0);
+        function pop_Curvasdenivel_1(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['fid'] !== null ? Autolinker.link(String(feature.properties['fid'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ID'] !== null ? Autolinker.link(String(feature.properties['ID'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">ELEV</th>\
+                        <td>' + (feature.properties['ELEV'] !== null ? Autolinker.link(String(feature.properties['ELEV'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Curvasdenivel_1_0() {
+            return {
+                pane: 'pane_Curvasdenivel_1',
+                opacity: 1,
+                color: 'rgba(243,166,178,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 1.0,
+                fillOpacity: 0,
+            }
+        }
+        map.createPane('pane_Curvasdenivel_1');
+        map.getPane('pane_Curvasdenivel_1').style.zIndex = 401;
+        map.getPane('pane_Curvasdenivel_1').style['mix-blend-mode'] = 'normal';
+        var layer_Curvasdenivel_1 = new L.geoJson(json_Curvasdenivel_1, {
+            attribution: '',
+            pane: 'pane_Curvasdenivel_1',
+            onEachFeature: pop_Curvasdenivel_1,
+            style: style_Curvasdenivel_1_0,
+        });
+        bounds_group.addLayer(layer_Curvasdenivel_1);
+        map.addLayer(layer_Curvasdenivel_1);
+        function pop_MuncipiodeFiscal_2(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['fid'] !== null ? Autolinker.link(String(feature.properties['fid'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ogc_fid'] !== null ? Autolinker.link(String(feature.properties['ogc_fid'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ogc_fid0'] !== null ? Autolinker.link(String(feature.properties['ogc_fid0'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['cat'] !== null ? Autolinker.link(String(feature.properties['cat'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['arcids'] !== null ? Autolinker.link(String(feature.properties['arcids'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['area'] !== null ? Autolinker.link(String(feature.properties['area'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['perimeter'] !== null ? Autolinker.link(String(feature.properties['perimeter'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ifn3220_'] !== null ? Autolinker.link(String(feature.properties['ifn3220_'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ifn3220_id'] !== null ? Autolinker.link(String(feature.properties['ifn3220_id'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['poligon'] !== null ? Autolinker.link(String(feature.properties['poligon'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['tipoestr'] !== null ? Autolinker.link(String(feature.properties['tipoestr'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['estrato'] !== null ? Autolinker.link(String(feature.properties['estrato'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['n1'] !== null ? Autolinker.link(String(feature.properties['n1'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['n2'] !== null ? Autolinker.link(String(feature.properties['n2'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['n3'] !== null ? Autolinker.link(String(feature.properties['n3'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['esp1'] !== null ? Autolinker.link(String(feature.properties['esp1'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['o1'] !== null ? Autolinker.link(String(feature.properties['o1'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['e1'] !== null ? Autolinker.link(String(feature.properties['e1'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['esp2'] !== null ? Autolinker.link(String(feature.properties['esp2'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['o2'] !== null ? Autolinker.link(String(feature.properties['o2'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['e2'] !== null ? Autolinker.link(String(feature.properties['e2'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['esp3'] !== null ? Autolinker.link(String(feature.properties['esp3'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['o3'] !== null ? Autolinker.link(String(feature.properties['o3'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['e3'] !== null ? Autolinker.link(String(feature.properties['e3'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['fcc'] !== null ? Autolinker.link(String(feature.properties['fcc'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['fccp'] !== null ? Autolinker.link(String(feature.properties['fccp'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['estado'] !== null ? Autolinker.link(String(feature.properties['estado'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['nval'] !== null ? Autolinker.link(String(feature.properties['nval'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ug'] !== null ? Autolinker.link(String(feature.properties['ug'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['hectareas'] !== null ? Autolinker.link(String(feature.properties['hectareas'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['tablas_ifn3 ESP_ESP-NOMBRE1'] !== null ? Autolinker.link(String(feature.properties['tablas_ifn3 ESP_ESP-NOMBRE1'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['tablas_ifn3 ESP_ESP-NOMBRE3'] !== null ? Autolinker.link(String(feature.properties['tablas_ifn3 ESP_ESP-NOMBRE3'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">hecta</th>\
+                        <td>' + (feature.properties['hecta'] !== null ? Autolinker.link(String(feature.properties['hecta'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Tabla auxiliar del IFN_ESP-NOMBRE1</th>\
+                        <td>' + (feature.properties['Tabla auxiliar del IFN_ESP-NOMBRE1'] !== null ? Autolinker.link(String(feature.properties['Tabla auxiliar del IFN_ESP-NOMBRE1'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Tabla auxiliar del IFN_ESP-NOMBRE3'] !== null ? Autolinker.link(String(feature.properties['Tabla auxiliar del IFN_ESP-NOMBRE3'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_MuncipiodeFiscal_2_0(feature) {
+            switch(String(feature.properties['Tabla auxiliar del IFN_ESP-NOMBRE1'])) {
+                case 'Abies alba':
+                    return {
+                pane: 'pane_MuncipiodeFiscal_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(166,97,26,1.0)',
+            }
+                    break;
+                case 'Buxus sempervirens':
+                    return {
+                pane: 'pane_MuncipiodeFiscal_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(184,127,56,1.0)',
+            }
+                    break;
+                case 'Fagus sylvatica':
+                    return {
+                pane: 'pane_MuncipiodeFiscal_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(201,157,87,1.0)',
+            }
+                    break;
+                case 'Juniperus oxycedrus':
+                    return {
+                pane: 'pane_MuncipiodeFiscal_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(219,187,117,1.0)',
+            }
+                    break;
+                case 'Juniperus phoenicea':
+                    return {
+                pane: 'pane_MuncipiodeFiscal_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(228,206,153,1.0)',
+            }
+                    break;
+                case 'Pinus nigra':
+                    return {
+                pane: 'pane_MuncipiodeFiscal_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(235,222,190,1.0)',
+            }
+                    break;
+                case 'Pinus sylvestris':
+                    return {
+                pane: 'pane_MuncipiodeFiscal_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(242,238,227,1.0)',
+            }
+                    break;
+                case 'Pinus uncinata':
+                    return {
+                pane: 'pane_MuncipiodeFiscal_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(227,239,237,1.0)',
+            }
+                    break;
+                case 'Populus nigra':
+                    return {
+                pane: 'pane_MuncipiodeFiscal_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(191,227,221,1.0)',
+            }
+                    break;
+                case 'Quercus faginea':
+                    return {
+                pane: 'pane_MuncipiodeFiscal_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(155,215,205,1.0)',
+            }
+                    break;
+                case 'Quercus ilex':
+                    return {
+                pane: 'pane_MuncipiodeFiscal_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(118,200,187,1.0)',
+            }
+                    break;
+                case 'Quercus pubescens (Q. humilis)':
+                    return {
+                pane: 'pane_MuncipiodeFiscal_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(79,178,162,1.0)',
+            }
+                    break;
+                case 'Salix spp.':
+                    return {
+                pane: 'pane_MuncipiodeFiscal_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(40,155,138,1.0)',
+            }
+                    break;
+                default:
+                    return {
+                pane: 'pane_MuncipiodeFiscal_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(1,133,113,1.0)',
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_MuncipiodeFiscal_2');
+        map.getPane('pane_MuncipiodeFiscal_2').style.zIndex = 402;
+        map.getPane('pane_MuncipiodeFiscal_2').style['mix-blend-mode'] = 'normal';
+        var layer_MuncipiodeFiscal_2 = new L.geoJson(json_MuncipiodeFiscal_2, {
+            attribution: '',
+            pane: 'pane_MuncipiodeFiscal_2',
+            onEachFeature: pop_MuncipiodeFiscal_2,
+            style: style_MuncipiodeFiscal_2_0,
+        });
+        bounds_group.addLayer(layer_MuncipiodeFiscal_2);
+        var osmGeocoder = new L.Control.Geocoder({
+            collapsed: true,
+            position: 'topleft',
+            text: 'Search',
+            title: 'Testing'
+        }).addTo(map);
+        document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
+        .className += ' fa fa-search';
+        document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
+        .title += 'Search for a place';
+        var baseMaps = {};
+        L.control.layers(baseMaps,{'Muncipio de Fiscal<br /><table><tr><td style="text-align: center;"><img src="legend/MuncipiodeFiscal_2_Abiesalba0.png" /></td><td>Abies alba</td></tr><tr><td style="text-align: center;"><img src="legend/MuncipiodeFiscal_2_Buxussempervirens1.png" /></td><td>Buxus sempervirens</td></tr><tr><td style="text-align: center;"><img src="legend/MuncipiodeFiscal_2_Fagussylvatica2.png" /></td><td>Fagus sylvatica</td></tr><tr><td style="text-align: center;"><img src="legend/MuncipiodeFiscal_2_Juniperusoxycedrus3.png" /></td><td>Juniperus oxycedrus</td></tr><tr><td style="text-align: center;"><img src="legend/MuncipiodeFiscal_2_Juniperusphoenicea4.png" /></td><td>Juniperus phoenicea</td></tr><tr><td style="text-align: center;"><img src="legend/MuncipiodeFiscal_2_Pinusnigra5.png" /></td><td>Pinus nigra</td></tr><tr><td style="text-align: center;"><img src="legend/MuncipiodeFiscal_2_Pinussylvestris6.png" /></td><td>Pinus sylvestris</td></tr><tr><td style="text-align: center;"><img src="legend/MuncipiodeFiscal_2_Pinusuncinata7.png" /></td><td>Pinus uncinata</td></tr><tr><td style="text-align: center;"><img src="legend/MuncipiodeFiscal_2_Populusnigra8.png" /></td><td>Populus nigra</td></tr><tr><td style="text-align: center;"><img src="legend/MuncipiodeFiscal_2_Quercusfaginea9.png" /></td><td>Quercus faginea</td></tr><tr><td style="text-align: center;"><img src="legend/MuncipiodeFiscal_2_Quercusilex10.png" /></td><td>Quercus ilex</td></tr><tr><td style="text-align: center;"><img src="legend/MuncipiodeFiscal_2_QuercuspubescensQhumilis11.png" /></td><td>Quercus pubescens (Q. humilis)</td></tr><tr><td style="text-align: center;"><img src="legend/MuncipiodeFiscal_2_Salixspp12.png" /></td><td>Salix spp.</td></tr><tr><td style="text-align: center;"><img src="legend/MuncipiodeFiscal_2_Sininformación13.png" /></td><td>Sin información</td></tr></table>': layer_MuncipiodeFiscal_2,'<img src="legend/Curvasdenivel_1.png" /> Curvas de nivel': layer_Curvasdenivel_1,"MDE del municipio de Fiscal": layer_MDEdelmunicipiodeFiscal_0,},{collapsed:false}).addTo(map);
+        setBounds();
+        L.ImageOverlay.include({
+            getBounds: function () {
+                return this._bounds;
+            }
+        });
+        </script>
+    </body>
+</html>
