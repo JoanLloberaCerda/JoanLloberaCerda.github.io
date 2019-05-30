@@ -18,7 +18,7 @@ crossorigin=""></script>
   </head>
   <body style="height: 567px;">
     <h1 style="text-align: center; width: 687px;"><span style="color: #144b03;">Mapa
-        sobre la localizacion de las provincias de Aragon en la Península
+        sobre la localizacion de las provincias de Aragon en la Península <!-- para incluir el texto del titulo y subtitulo a traves de h1 y h2 -->
         Iberica</span> </h1>
     <h2 style="width: 637px; text-align: center;"> <span style="color: #36a472;">Localizacion
         del municipio de Pollença en Mallorca, Islas Baleares. con el circulo
@@ -32,7 +32,8 @@ crossorigin=""></script>
     <!-- identificador bloque con los respectivos valores -->
     <style type="text/css" title="estilo personal">
 html, body, #mapa {width: 400px; height: 400px;} </style>
-    <div #mapa="" id="bloque_mapa"></div>
+    <div id="bloque_mapa"></div>
+
     <!-- SCRIPT PARA ELEABORAR EL MAPA-->
     <script>
 // definimos el mapa como una varianble y le ajustamos dónde lo queremos ver
@@ -70,10 +71,10 @@ var stamen_tms = L.tileLayer(
   stamen_tms.addTo(mi_mapa);
 //TMS2\\  // añadir TM de OpenStreetMap render Mapnik
 var OSM_mapnik = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 19,
+    maxZoom: 19, //zoom maximo
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 });
-  OSM_mapnik.addTo(mi_mapa);
+  OSM_mapnik.addTo(mi_mapa); // lo añadimos a mi mada
 
 // PARA DESCARGAR UN PNOA \\
 
