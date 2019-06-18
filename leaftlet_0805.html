@@ -13,13 +13,12 @@
  crossorigin=""></script>
 
     <!-- enlace a JavaScript de Leaflet (justo tras CSS) -->
-    <script src="./leaflet.js" integrity="sha512-3Wcxp7F9bV2pl+MBgrL6Pz7AJASLpemmQPIiPA0lDs3ImF0z4JuuMIBPeirLbgIuhfH2gJyGWZjvm6M+Zr7L6Q=="
+    <script src="./leaflet.js" integrity="sha512-3Wcxp7F9bV2pl+MBgrL6Pz7AJASLpemmQPIiPA0lDs3ImF0z4JuuMIBPeirLbgIuhfH2gJyGWZjvm6M+Zr7L6Q=="
 crossorigin=""></script>
   </head>
   <body style="height: 567px;">
     <h1 style="text-align: center; width: 687px;"><span style="color: #144b03;">Mapa
-        sobre la localizacion de las provincias de Aragon en la Península <!-- para incluir el texto del titulo y subtitulo a traves de h1 y h2 -->
-        Iberica</span> </h1>
+        sobre la localizacion de las provincias de Aragon en la Península Iberica</span> </h1>  <!-- para incluir el texto del titulo y subtitulo a traves de h1 y h2 -->
     <h2 style="width: 637px; text-align: center;"> <span style="color: #36a472;">Localizacion
         del municipio de Pollença en Mallorca, Islas Baleares. con el circulo
         amarillo</span> </h2>
@@ -37,7 +36,7 @@ html, body, #mapa {width: 400px; height: 400px;} </style>
     <!-- SCRIPT PARA ELEABORAR EL MAPA-->
     <script>
 // definimos el mapa como una varianble y le ajustamos dónde lo queremos ver
-    var mi_mapa = L.map('bloque_mapa').setView([40, -2], 5); <!-- donde se añadira la informacion, es decir no sera bloque_mapa sino mi_mapa -->
+    var mi_mapa = L.map('bloque_mapa').setView([40, -2], 4.5); <!-- donde se añadira la informacion, es decir no sera bloque_mapa sino mi_mapa -->
 
 // añadimos mapa de fondo
     L.tileLayer(
